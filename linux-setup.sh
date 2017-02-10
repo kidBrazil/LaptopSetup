@@ -1,4 +1,3 @@
-
 #!/usr/bin/env bash
 clear
 # [ Black Mesa - Vue.js Dependencies ]
@@ -193,7 +192,68 @@ then
   echo ":source %"
   echo ":PluginInstall"
   echo "--------------------------------------------------------------------------------------"
+  sleep 3s
   read -p "${GREEN} Ready To continue??${NC}"
 else
   error_handle "The base file with Vim configuration is missing - please download the package again"
 fi
+
+#[ Install OHMYZDSH ]
+clear
+echo "${YELLOW}[ INSTALLING OH-MY-ZSH ]${NC}"
+echo
+sudo apt-get install zsh
+sudo apt-get install git-core
+wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
+clear
+echo
+echo "${YELLOW}[ SETTING ZSH AS DEFAULT ]${NC}"
+chsh -s `which zsh`
+echo
+echo "${GREEN}[ Successfully Installed ZSH and set as default ]"
+echo
+echo "For this to fully take effect you will have to ${RED}REBOOT.${GREEN}"
+echo "Don't worry - The script will reboot at the end of the installation."
+sleep 3s
+read -p "${YELLOW}Ready To Continue with Configuring ZDSH?${NC}"
+clear 
+
+#[ Configure OHMYZDSH ]
+echo "${YELLOW}[ CHECKING FOR ZSH CONFIG ]${NC}"
+if [ ! -f ~/.zshrc ]
+then
+  touch ~/.zshrc
+fi
+if [ -f ./config/BASE.zshrc ]
+then
+  echo "${YELLOW}[ UPDATING ZSH CONFIG ]${NC}"
+  > ~/.zshrc
+  cat ./config/BASE.zshrc >> ~/.zshrc
+  clear
+  echo "${GREEN}[ ZHS Successfully Configured...]${NC}"
+  echo
+  sleep 3s
+else
+  error_handle "Base ZSH config file is missing. Pease download the package again."
+fi
+
+#[ Install Droid Sans Powerline Font ]
+clear
+echo
+echo "${YELLOW}[ PREPARING FONT INSTALL BY CREATING DIRECTORIES ]${NC}"
+mkdir zsh-my-powerline-fonts
+cd zsh-my-powerline-fonts/
+git clone https://github.com/powerline/fonts.git
+./fonts/install.sh
+cd ..
+sudo rm -r zsh-my-powerline-fonts
+clear 
+echo "${GREEN}[ Powerline Patched Fonts Have Been Installed ...]"
+echo
+echo "You can change the fonts in your terminal preference to enable them${NC}"
+sleep 3s
+
+#[ Install TaskWarrior ]
+
+
+#[ Install TREE ]
