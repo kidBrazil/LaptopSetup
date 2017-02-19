@@ -7,11 +7,6 @@ clear
 # 
 # Setup Bash Script for installing Node dependencies and running dev server
 # with support for Windows | Mac | Linux architectures.
-# TODO
-# - OHMYZDSH
-# - OHMYZDSH Fonts
-# - Guake
-# - Install TREE
 
 # Program Variables
 BLACKMESA="[ Singularity Manager ] ||"
@@ -247,13 +242,76 @@ git clone https://github.com/powerline/fonts.git
 ./fonts/install.sh
 cd ..
 sudo rm -r zsh-my-powerline-fonts
-clear 
+clear
+echo
 echo "${GREEN}[ Powerline Patched Fonts Have Been Installed ...]"
 echo
 echo "You can change the fonts in your terminal preference to enable them${NC}"
-sleep 3s
+sleep 5s
 
 #[ Install TaskWarrior ]
-
+clear
+echo
+echo "${YELLOW}[ INSTALLING TASKWARRIOR TASK MANAGER  ]${NC}"
+echo
+sleep 2s
+sudo apt-get install task
+clear
+echo
+echo "${GREEN}[ Successfully Installed TaskWarrior ]${NC}"
+sleep 5s
 
 #[ Install TREE ]
+clear
+echo
+echo "${YELLOW}[ INSTALLING TREE FOLDER STRUCTURE VIEWER ]${NC}"
+echo
+sleep 2s
+sudo apt-get install tree
+clear
+echo
+echo "${GREEN}[ Successfully Installed Tree Folder Structure Viewer  ]${NC}"
+sleep 5s
+
+#[ Install Guake ]
+clear
+echo
+echo "${YELLO}[ INSTALLING GUAKE TERMINAL ]${NC}"
+sleep 2s
+sudo apt-get install guake
+clear
+echo "${YELLO}[ SETTING UP GUAKE FOR STARTUP ]${NC}"
+sleep 2s
+cp /usr/share/applications/guake.desktop /etc/xdg/autostart/
+clear
+echo "${GREEN}[ Successfully Installed Guake Terminal ]${NC}"
+sleep 3s
+
+#[ENDING]
+clear
+echo "${YELLOW}"
+#Show ASCII Art if it's there.
+if [ -f ./kryptonite.txt ]
+then
+  cat ./kryptonite.txt
+fi
+echo
+sleep 2s
+echo "======================================================================================"
+echo
+echo "[ SINGULARITY ACHIEVED ]"
+echo
+echo "List Of Installed Apps:"
+echo
+echo "- Git"
+echo "- Xclip"
+echo "- Vim"
+echo "- Vim Janus Dist."
+echo "- Vundle (With Plugins)"
+echo "- OhMyZSH"
+echo "- Tree"
+echo "- TaskWarrior"
+echo "- Guake"
+echo
+echo "======================================================================================"
+sleep 5s
