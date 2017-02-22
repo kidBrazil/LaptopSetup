@@ -97,34 +97,6 @@ else
   echo "${GREEN}Finished Configuring Git. Proceeding.${NC}"
 fi
 
-# [ GET RSA KEYS SETUP ]
-if ls -al ~/.ssh/id_rsa.pub
-then
-  # ID Setup Moving On
-  clear
-  echo
-  echo "${GREEN}Public Key Already Generated... Proceeding.${NC}"
-  sleep 2s
-else
-  # Generate ID
-  clear
-  echo
-  echo "${GREEN}Generating RSA Key Pairs..."
-  echo
-  sleep 2s
-  # Generate SSH Key
-  read -p "${YELLOW}Please Enter the Same Email Used For user.email...${NC}" useremailrsa
-  ssh-keygen -t rsa -b 4096 $useremailrsa
-  sleep 1s
-  # Add to SSH Agent
-  echo
-  echo "${GREEN}Adding Key to SSH Agent...${NC}"
-  sleep 2s
-  eval "$(ssh-agent -s)"
-  ssh-add ~/.ssh/id_rsa
-  sleep 2s
-fi
-
 clear
 echo
 echo "${YELLOW}[ Installing XClip.... ]${NC}"
@@ -158,41 +130,12 @@ echo
 echo "${YELLOW}[ INSTALLING JANUS ] ${NC}"
 curl -L https://bit.ly/janus-bootstrap | bash
 sleep 1s
-if [ ! -f ~/.vimrc.after ]
-then
-  touch ~/.vimrc.after
-else
-  echo 'color molokai' >> ~/.vimrc.after
-  echo 'au BufReadPost *.vue set syntax=vue' >> ~/.vimrc.after
-fi
 #[ Install Vundle Plugin Manager ]
 echo
 echo "${YELLOW}[ INSTALLING VUNDLE ]${NC}"
 echo
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 clear
-#[ Configure VIM & Add Vundple Plugin List ]
-echo "${RED}[ CONFIGURING VIM & PLUGINS ] ${NC}"
-> ~/.vimrc
-if [ -f ./config/BASE.vimrc ]
-then
-  cat ./config/BASE.vimrc >> ~/.vimrc
-  echo
-  echo
-  echo "${GREEN}[ Vundle & Vim have been installed & Configured...  ]${NC}"
-  echo
-  echo "--------------------------------------------------------------------------------------"
-  echo "${YELLOW}Now that VUNDLE is installed you can install the plugins by opening vim and "
-  echo "running the following two commands:"
-  echo
-  echo ":source %"
-  echo ":PluginInstall"
-  echo "--------------------------------------------------------------------------------------"
-  sleep 3s
-  read -p "${GREEN} Ready To continue??${NC}"
-else
-  error_handle "The base file with Vim configuration is missing - please download the package again"
-fi
 
 #[ Install OHMYZDSH ]
 clear
@@ -200,7 +143,7 @@ echo "${YELLOW}[ INSTALLING OH-MY-ZSH ]${NC}"
 echo
 sudo apt-get install zsh
 sudo apt-get install git-core
-wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
+sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 clear
 echo
 echo "${YELLOW}[ SETTING ZSH AS DEFAULT ]${NC}"
@@ -213,25 +156,6 @@ echo "Don't worry - The script will reboot at the end of the installation."
 sleep 3s
 read -p "${YELLOW}Ready To Continue with Configuring ZDSH?${NC}"
 clear 
-
-#[ Configure OHMYZDSH ]
-echo "${YELLOW}[ CHECKING FOR ZSH CONFIG ]${NC}"
-if [ ! -f ~/.zshrc ]
-then
-  touch ~/.zshrc
-fi
-if [ -f ./config/BASE.zshrc ]
-then
-  echo "${YELLOW}[ UPDATING ZSH CONFIG ]${NC}"
-  > ~/.zshrc
-  cat ./config/BASE.zshrc >> ~/.zshrc
-  clear
-  echo "${GREEN}[ ZHS Successfully Configured...]${NC}"
-  echo
-  sleep 3s
-else
-  error_handle "Base ZSH config file is missing. Pease download the package again."
-fi
 
 #[ Install Droid Sans Powerline Font ]
 clear
