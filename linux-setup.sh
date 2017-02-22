@@ -60,6 +60,20 @@ then
 else
   error_handle "SUDO Failed to update Apt-Get...you are not ready for the singularity."
 
+#[ Install Chrome ]
+clear
+echo
+echo "${YELLOW}[ INSTALLING CHROME MASTER OF ALL BROWSERS ]${NC}"
+sleep 2s
+sudo sh -c 'echo "deb http://dl.google.com/linux/deb/ stable non-free main" >> ~/etc/apt/sources.list'
+sudo wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+sudo apt-get update
+#may be google-chrome-beta
+sudo apt-get install google-chrome
+clear
+echo "${GREEN}[ Successfully Installed Chrome ]${NC}"
+sleep 2s
+
 # [ Check for GIT installation & Configuration ]
 if git --version
 then
@@ -286,6 +300,19 @@ cp /usr/share/applications/guake.desktop /etc/xdg/autostart/
 clear
 echo "${GREEN}[ Successfully Installed Guake Terminal ]${NC}"
 sleep 3s
+
+
+#[ Install Steam ]
+clear
+echo
+echo "${YELLOW}[ INSTALLING STEAM ]${NC}"
+sleep 2s
+sudo apt-get install -y curl && \
+  curl -L -s https://raw.github.com/gist/4713132/install-steam-repo.bash \
+    | sudo bash
+clear
+echo "${GREEN}[ Sucessfully Installed Steam ]${NC}"
+sleep 2s
 
 #[ENDING]
 clear
