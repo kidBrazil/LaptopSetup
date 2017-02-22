@@ -53,6 +53,7 @@ clear
 
 #[ UPDATE APT-GET]
 echo "${NC}${YELLOW} [ Updating Data Repository - Prepare SUDO ]${NC}"
+cd ~
 if sudo apt-get update
 then
   clear
@@ -328,3 +329,4 @@ echo "- Guake"
 echo
 echo "======================================================================================"
 sleep 5s
+exit
