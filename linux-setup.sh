@@ -53,14 +53,14 @@ clear
 
 #[ UPDATE APT-GET]
 echo "${NC}${YELLOW} [ Updating Data Repository - Prepare SUDO ]${NC}"
-cd ~
+
 if sudo apt-get update
 then
   clear
   echo "${GREEN}[ DATA REPOSITORY SUCCESSFULLY UPDATED ]${NC}"
 else
   error_handle "SUDO Failed to update Apt-Get...you are not ready for the singularity."
-
+fi
 # [ Check for GIT installation & Configuration ]
 if git --version
 then
