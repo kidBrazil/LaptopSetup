@@ -118,6 +118,95 @@ sleep 2s
 echo
 read -p "${GREEN}Ready To Proceed?${NC}"
 
+#[ Install OHMYZDSH ]
+clear
+echo "${YELLOW}[ INSTALLING OH-MY-ZSH ]${NC}"
+echo
+sudo apt-get install zsh
+sudo apt-get install git-core
+sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+clear
+echo
+echo "${YELLOW}[ SETTING ZSH AS DEFAULT ]${NC}"
+chsh -s `which zsh`
+echo
+echo "${GREEN}[ Successfully Installed ZSH and set as default ]"
+echo
+echo "For this to fully take effect you will have to ${RED}REBOOT.${GREEN}"
+echo "Don't worry - The script will reboot at the end of the installation."
+sleep 3s
+read -p "${YELLOW}Ready To Continue with Configuring ZDSH?${NC}"
+clear 
+
+#[ Install Vim & Vundle ]
+clear
+echo
+echo "${YELLOW}[ INSTALLING BEST IDE ]${NC}"
+echo
+sudo apt-get install vim
+echo
+echo "${GREEN}[ Vim Successfully installed ] ${NC}"
+echo
+echo "${YELLOW}[ INSTALLING VUNDLE ]${NC}"
+echo
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+clear
+
+#[ Install Droid Sans Powerline Font ]
+clear
+echo
+echo "${YELLOW}[ PREPARING FONT INSTALL BY CREATING DIRECTORIES ]${NC}"
+mkdir zsh-my-powerline-fonts
+cd zsh-my-powerline-fonts/
+git clone https://github.com/powerline/fonts.git
+./fonts/install.sh
+cd ..
+sudo rm -r zsh-my-powerline-fonts
+clear
+echo
+echo "${GREEN}[ Powerline Patched Fonts Have Been Installed ...]"
+echo
+echo "You can change the fonts in your terminal preference to enable them${NC}"
+sleep 5s
+
+#[ Install TaskWarrior ]
+clear
+echo
+echo "${YELLOW}[ INSTALLING TASKWARRIOR TASK MANAGER  ]${NC}"
+echo
+sleep 2s
+sudo apt-get install task
+clear
+echo
+echo "${GREEN}[ Successfully Installed TaskWarrior ]${NC}"
+sleep 5s
+
+#[ Install TREE ]
+clear
+echo
+echo "${YELLOW}[ INSTALLING TREE FOLDER STRUCTURE VIEWER ]${NC}"
+echo
+sleep 2s
+sudo apt-get install tree
+clear
+echo
+echo "${GREEN}[ Successfully Installed Tree Folder Structure Viewer  ]${NC}"
+sleep 5s
+
+#[ Install Guake ]
+clear
+echo
+echo "${YELLO}[ INSTALLING GUAKE TERMINAL ]${NC}"
+sleep 2s
+sudo apt-get install guake
+clear
+echo "${YELLO}[ SETTING UP GUAKE FOR STARTUP ]${NC}"
+sleep 2s
+cp /usr/share/applications/guake.desktop /etc/xdg/autostart/
+clear
+echo "${GREEN}[ Successfully Installed Guake Terminal ]${NC}"
+sleep 3s
+
 # [[ NODE JS ]].
 if node -v
   then
@@ -162,6 +251,12 @@ echo
 echo "${YELLOW} [ Fixing MOZJPEG ]${NC}"
 sudo apt-get install libtool automake autoconf nasm
 
+#[ Configuring VIM and ZSH ]
+clear
+echo
+echo "${YELLOW}[ CONFIGURING VIM & ZSH ] ${NC}"
+sudo cp ./dotfiles/.zshrc ~/.zshrc
+sudo cp ./dotfiles/.vimrc ~/.vimrc
 #[ENDING]
 clear
 echo "${YELLOW}"

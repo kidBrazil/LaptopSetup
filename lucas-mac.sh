@@ -26,6 +26,8 @@ RED=`tput setaf 1`
 YELLOW=`tput setaf 3`
 NC=`tput sgr0`
 
+echo "${RED}TEST${NC}"
+
 # [ Output Art & Introduction ] ------------------------------------
 clear
 echo "${YELLOW}"
@@ -51,27 +53,72 @@ echo "[ INITIATING SINGULARITY...]"
 sleep 2s
 clear
 
-#[ UPDATE APT-GET]
-echo "${NC}${YELLOW} [ Updating Data Repository - Prepare SUDO ]${NC}"
+#[ Install Brew for Mac ]
+echo
+echo "${YELLOW}[ INSTALLING BREW...]${NC}"
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+clear
 
-if sudo apt-get update
-then
-  clear
-  echo "${GREEN}[ DATA REPOSITORY SUCCESSFULLY UPDATED ]${NC}"
-else
-  error_handle "SUDO Failed to update Apt-Get...you are not ready for the singularity."
-fi
-# [ Check for GIT installation & Configuration ]
-if git --version
-then
-    clear
-    echo
-    echo "${GREEN}Git is installed... Moving on to Git Configuration${NC}"
-    sleep 5s
-  else
-    # Install Git on LInux
-    apt-get install git
-fi
+#[ Install ZSH ]
+echo
+echo "${YELLOW} [ INSTALLING ZSH...]${NC}"
+brew install zsh
+
+#[ Install OHMYZSH ]
+echo
+echo "${YELLOW} [ INSTALLING ZSH...]${NC}"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+#[ Install VIM ]
+echo
+echo "${YELLOW} [ INSTALLING VIM...]${NC}"
+brew install vim --with-override-system-vi
+
+#[ Install Droid Sans Powerline Font ]
+clear
+echo
+echo "${YELLOW}[ PREPARING FONT INSTALL BY CREATING DIRECTORIES ]${NC}"
+mkdir zsh-my-powerline-fonts
+cd zsh-my-powerline-fonts/
+git clone https://github.com/powerline/fonts.git
+./fonts/install.sh
+cd ..
+sudo rm -r zsh-my-powerline-fonts
+clear
+echo
+echo "${GREEN}[ Powerline Patched Fonts Have Been Installed ...]"
+echo
+echo "You can change the fonts in your terminal preference to enable them${NC}"
+sleep 5s
+
+#[ Install TaskWarrior ]
+clear
+echo
+echo "${YELLOW}[ INSTALLING TASKWARRIOR TASK MANAGER  ]${NC}"
+echo
+sleep 2s
+brew install task
+clear
+echo
+echo "${GREEN}[ Successfully Installed TaskWarrior ]${NC}"
+sleep 5s
+
+#[ Install TREE ]
+clear
+echo
+echo "${YELLOW}[ INSTALLING TREE FOLDER STRUCTURE VIEWER ]${NC}"
+echo
+sleep 2s
+brew install tree
+clear
+echo
+echo "${GREEN}[ Successfully Installed Tree Folder Structure Viewer  ]${NC}"
+sleep 5s
+
+#[ Install Git ]
+echo
+echo "${YELLOW}[ INSTALLING GIT ]${NC}"
+brew install git
 
 # [ CONFIGURE GIT ]
 if git config --global user.name
@@ -97,51 +144,63 @@ else
   echo "${GREEN}Finished Configuring Git. Proceeding.${NC}"
 fi
 
+sleep 2s
+clear
+echo 
+echo "${GREEN}Setting Up SSH Keys${NC}"
+echo
+sleep 3s
+
+# [ GET RSA KEYS SETUP ]
+if ls -al ~/.ssh/id_rsa.pub
+then
+  # ID Setup Moving On
+  clear
+  echo
+  echo "${GREEN}Public Key Already Generated... Proceeding.${NC}"
+  sleep 2s
+else
+  # Generate ID
+  clear
+  echo
+  echo "${GREEN}Generating RSA Key Pairs..."
+  echo
+  sleep 2s
+  # Generate SSH Key
+  read -p "${YELLOW}Please Enter the Same Email Used For user.email...${NC}" useremailrsa
+  ssh-keygen -t rsa -b 4096 $useremailrsa
+  sleep 1s
+  # Add to SSH Agent
+  echo
+  echo "${GREEN}Adding Key to SSH Agent...${NC}"
+  sleep 2s
+  eval "$(ssh-agent -s)"
+  ssh-add ~/.ssh/id_rsa
+  sleep 2s
+fi
+
 clear
 echo
-echo "${YELLOW}[ Installing XClip.... ]${NC}"
-sleep 1s
-# Install XClip
-sudo apt-get install xclip
-# Copy RSA to Clipboard
-echo 
-echo "${GREEN}Copying RSA Key To Clipboard...${NC}"
-sleep 2s
-xclip -sel clip < ~/.ssh/id_rsa.pub
+echo "${GREEN}Adding RSA Keys to Github Account...${NC}"
+
+#Copy key to Clipboard
+pbcopy < ~/.ssh/id_rsa.pub
+clear
 cat ~/.ssh/id_rsa.pub
 echo
 echo "${YELLO}Your Public SSH Key is Now Loaded In Your ${GREEN}CLIPBOARD (ctrl/cmd+v)${NC}"
 echo
 echo "${YELLOW} Please visit https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/"
 echo "For instructions on how to add it to your GitHub Account."
-sleep 2s
 echo
+sleep 2s
 read -p "${GREEN}Ready To Proceed?${NC}"
 
-# [[ NODE JS ]].
-if node -v
-  then
-    echo
-    echo "${GREEN}Node is already installed. Proceeding with Dependencies...${NC}"
-    sleep 5s
-  else
-    clear
-    echo
-    echo "${RED}Node installation is missing.${NC}"
-    echo
-    echo "${GREEN}Preparing to Install Node..."
-    sleep 3s
-    
-    # Linux Node Install Script
-    clear
-    echo
-    echo "${YELLOW}[ Operating System Detected as: ${GREEN}Linux / GNU${NC}${YELLOW}]${NC}"
-    sleep 2s
-    # Prepare Install
-    curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash
-    # Install Node
-    sudo apt-get install -y nodejs
-fi
+# [ Install NODE ]
+clear
+echo
+echo "${YELLOW}[ INSTALLING NODE.JS...]${NC}"
+brew install node
 
 #[ Install VUE Globally ]
 clear
@@ -154,14 +213,20 @@ npm install -g vue-cli
 clear
 echo
 echo "${YELLOW}[ INSTALLING LIBPNG ]${NC}"
-sudo apt-get install libpng-dev
+brew install libpng-dev
 
 #[ Install Libtool, automake, nams and autoconf ]
 clear 
 echo
 echo "${YELLOW} [ Fixing MOZJPEG ]${NC}"
-sudo apt-get install libtool automake autoconf nasm
+brew install libtool automake autoconf nasm
 
+#[ Configuring VIM and ZSH ]
+clear
+echo
+echo "${YELLOW}[ CONFIGURING VIM & ZSH ] ${NC}"
+sudo cp ./dotfiles/.zshrc ~/.zshrc
+sudo cp ./dotfiles/.vimrc ~/.vimrc
 #[ENDING]
 clear
 echo "${YELLOW}"
