@@ -97,6 +97,44 @@ else
   echo "${GREEN}Finished Configuring Git. Proceeding.${NC}"
 fi
 
+sleep 2s
+clear
+echo 
+echo "${GREEN}Setting Up SSH Keys${NC}"
+echo
+sleep 3s
+
+# [ GET RSA KEYS SETUP ]
+if ls -al ~/.ssh/id_rsa.pub
+then
+  # ID Setup Moving On
+  clear
+  echo
+  echo "${GREEN}Public Key Already Generated... Proceeding.${NC}"
+  sleep 2s
+else
+  # Generate ID
+  clear
+  echo
+  echo "${GREEN}Generating RSA Key Pairs..."
+  echo
+  sleep 2s
+  # Generate SSH Key
+  read -p "${YELLOW}Please Enter the Same Email Used For user.email...${NC}" useremailrsa
+  ssh-keygen -t rsa -b 4096 -C $useremailrsa
+  sleep 1s
+  # Add to SSH Agent
+  echo
+  echo "${GREEN}Adding Key to SSH Agent...${NC}"
+  sleep 2s
+  eval "$(ssh-agent -s)"
+  ssh-add ~/.ssh/id_rsa
+  sleep 2s
+fi
+
+clear
+
+
 clear
 echo
 echo "${YELLOW}[ Installing XClip.... ]${NC}"
@@ -154,7 +192,7 @@ npm install -g vue-cli
 clear
 echo
 echo "${YELLOW}[ INSTALLING LIBPNG ]${NC}"
-sudo apt-get install libpng-dev
+sudo apt-get install libpng-dev mozjpeg
 
 #[ Install Libtool, automake, nams and autoconf ]
 clear 

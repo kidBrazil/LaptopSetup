@@ -39,18 +39,35 @@ fi
 echo
 sleep 2s
 echo "======================================================================================"
-echo "${NC}${RED}"
+echo "${NC}${YELLOW}"
 echo "Are You Ready For The [ SINGULARITY? ]"
+echo "${NC}${RED}"
+echo "[ WARNING ]"
+echo
+echo "Before moving ahead with the installation you must ensure that OSX is fully updated"
+echo "and Xcode developer tools are fully installed and updated."
+echo
 echo "${NC}${YELLOW}"
 echo "--------------------------------------------------------------------------------------"
-read -p "${NC}${GREEN} [ YES JOIN THE SINGULARITY | YES JOIN THE SINGULARITY ]" answer
+read -p "${NC}${GREEN} [ Are you sure OSX is fully updated? ]" answer
+read -p "${NC}${GREEN} [ Are you sure Xcode is fully installed? ]" answer
 clear
-echo "[ GENERATING BIO IMPLANTS... ]"
-sleep 1s
-echo "[ PROCURING NETWORK CONNECTIONS... ]"
 sleep 1s
 echo "[ INITIATING SINGULARITY...]"
 sleep 2s
+clear
+
+#[ Force Software Update on Mac ]
+echo "${NC}${YELLOW}[ Checking for OSX Software Updates just in case...] ${NC}"
+echo
+sudo softwareupdate -iva
+sleep 1s
+clear
+
+#[ Install XCode ]
+echo
+echo "${YELLOW}[ Installing XCode command line tools for Mac...]${NC}"
+xcode-select --install
 clear
 
 #[ Install Brew for Mac ]
@@ -112,7 +129,7 @@ else
   sleep 2s
   # Generate SSH Key
   read -p "${YELLOW}Please Enter the Same Email Used For user.email...${NC}" useremailrsa
-  ssh-keygen -t rsa -b 4096 $useremailrsa
+  ssh-keygen -t rsa -b 4096 -C $useremailrsa
   sleep 1s
   # Add to SSH Agent
   echo
@@ -157,7 +174,7 @@ npm install -g vue-cli
 clear
 echo
 echo "${YELLOW}[ INSTALLING LIBPNG ]${NC}"
-brew install libpng-dev
+brew install libpng-dev mozjpeg
 
 #[ Install Libtool, automake, nams and autoconf ]
 clear 

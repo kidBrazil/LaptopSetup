@@ -41,7 +41,7 @@ set ruler
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
 
-" When searching try to be smart about cases 
+" When searching try to be smart about cases
 set smartcase
 
 " Highlight search results
@@ -54,7 +54,7 @@ set incsearch
 set showmatch
 
 " Remove trailing white space
-autocmd BufWritePre *.py :%s/\s\+$//e
+autocmd BufWritePre * :%s/\s\+$//e
 
 " Ignore System & Compiled files
 set wildignore=*.o,*~,*.pyc
@@ -84,7 +84,6 @@ set splitright
 set ai
 set si
 set number
-
 " ------------------------------
 " COLOR SCHEMES
 " -----------------------------
