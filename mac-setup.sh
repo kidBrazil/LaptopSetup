@@ -2,9 +2,9 @@
 clear
 # [ Black Mesa - Vue.js Dependencies ]
 # ------------------------------------------------------------------
-# Lucas Moreira - l.moreira@live.ca 
+# Lucas Moreira - l.moreira@live.ca
 # ------------------------------------------------------------------
-# 
+#
 # Setup Bash Script for installing Node dependencies and running dev server
 # with support for Windows | Mac | Linux architectures.
 
@@ -107,7 +107,7 @@ fi
 
 sleep 2s
 clear
-echo 
+echo
 echo "${GREEN}Setting Up SSH Keys${NC}"
 echo
 sleep 3s
@@ -161,8 +161,8 @@ read -p "${GREEN}Ready To Proceed?${NC}"
 clear
 echo
 echo "${YELLOW}[ INSTALLING NODE.JS...]${NC}"
-brew install node
-
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash
+nvm install node
 #[ Install VUE Globally ]
 clear
 echo
@@ -177,7 +177,7 @@ echo "${YELLOW}[ INSTALLING LIBPNG ]${NC}"
 brew install libpng-dev mozjpeg
 
 #[ Install Libtool, automake, nams and autoconf ]
-clear 
+clear
 echo
 echo "${YELLOW} [ Fixing MOZJPEG ]${NC}"
 brew install libtool automake autoconf nasm

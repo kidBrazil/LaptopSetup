@@ -131,6 +131,22 @@ if node -v
 fi
 # NODE INSTALL FINISH.
 
+if [ "$(uname)" == "Darwin" ]
+then
+  #install brew
+  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  #install image libraries
+  brew install libpng-dev mozjpeg
+  # Install compilers
+  brew install libtool automake autoconf nasm
+  elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]
+  then
+    sudo apt-get install libpng-dev mozjpeg
+    sudo apt-get install libtool automake autoconf nasm
+  else
+    clear
+    echo "${RED}[ OS Not Found...]${NC}"
+fi
 # Fetch latest master branch
 echo "${GREEN}Fetching latest codebase from Master...${NC}"
 if git fetch && git checkout master && git pull origin master
