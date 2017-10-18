@@ -156,6 +156,24 @@ sleep 2s
 echo
 read -p "${GREEN}Ready To Proceed?${NC}"
 
+clear
+echo
+echo "${YELLOW}[ Installing Necessary Build Tools & Dependencies ]${NC}"
+echo
+# Install Build Essentials and Libssl
+sudo apt-get install build-essential libssl-dev
+clear
+echo
+# Install LibPCRE3
+sudo apt-get install libpcre3 libpcre3-dev libpcrecpp0v5
+clear
+echo
+# install zlib
+sudo apt-get install zlib1g-dev
+clear
+echo
+# Install Process manager htop
+sudo apt-get install htop
 # [[ NODE JS ]].
 if node -v
   then
@@ -177,7 +195,6 @@ if node -v
     sleep 2s
     # Prepare Install
     sudo apt-get update
-    sudo apt-get install build-essential libssl-dev
     curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash
     nvm install node
 fi

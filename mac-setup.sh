@@ -157,6 +157,21 @@ echo
 sleep 2s
 read -p "${GREEN}Ready To Proceed?${NC}"
 
+# Install Build Essentials and Libssl
+sudo apt-get install build-essential libssl-dev
+clear
+echo
+# Install LibPCRE3
+sudo apt-get install libpcre3 libpcre3-dev libpcrecpp0v5
+clear
+echo
+# install zlib
+sudo apt-get install zlib1g-dev
+clear
+echo
+# Install Process manager htop
+sudo apt-get install htop
+
 # [ Install NODE ]
 clear
 echo
