@@ -86,3 +86,6 @@ source $ZSH/oh-my-zsh.sh
 
 export NVM_DIR="/home/lucas/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
+alias fixbutter="sudo systemctl stop ModemManager.service"
+alias getmaster="git checkout master && git fetch && git pull"

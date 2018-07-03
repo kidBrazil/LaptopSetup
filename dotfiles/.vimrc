@@ -27,6 +27,9 @@ call vundle#end()
 filetype plugin indent on
 
 au BufReadPost *.vue set syntax=vue
+au BufReadPost *.php set filetype=html
+au BufReadPost *.md  set textwidth=80
+
 
 " ------------------------------
 "  GENERAL CONFIGURATIO
@@ -79,7 +82,7 @@ set softtabstop=2
 set shiftwidth=2
 set autoindent
 set nowrap
-set textwidth=0
+set textwidth=200
 set splitright
 set ai
 set si
