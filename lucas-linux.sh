@@ -70,7 +70,7 @@ then
     sleep 5s
   else
     # Install Git on LInux
-    apt-get install git
+    sudo apt-get install git
 fi
 
 # [ CONFIGURE GIT ]
@@ -244,7 +244,7 @@ if node -v
     # Prepare Install
     sudo apt-get update
     curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash
-    nvm install node
+    nvm install node 8.11.1
 fi
 
 #[ Install VUE Globally ]
