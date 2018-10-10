@@ -2569,9 +2569,9 @@
       <Z>3</Z>
       <Command>1</Command>
       <Key>
-        <DisplayID>84</DisplayID>
-        <ValASCII>220</ValASCII>
-        <ValScan>84</ValScan>
+        <DisplayID>85</DisplayID>
+        <ValASCII>221</ValASCII>
+        <ValScan>85</ValScan>
         <KeyType>0</KeyType>
         <AllLayers>false</AllLayers>
         <HasASCII>true</HasASCII>
