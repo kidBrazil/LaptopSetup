@@ -1,37 +1,9 @@
-""
-"" Janus setup
-""
-
-" Define paths
-if has('win32') || has('win64') || has('win32unix')
-  let g:janus_path = expand("~/.vim/janus/vim")
-  let g:janus_vim_path = expand("~/.vim/janus/vim")
-else
-  let g:janus_path = escape(fnamemodify(resolve(expand("<sfile>:p")), ":h"), ' ')
-  let g:janus_vim_path = escape(fnamemodify(resolve(expand("<sfile>:p" . "vim")), ":h"), ' ')
-endif
-let g:janus_custom_path = expand("~/.janus")
-
-" Source janus's core
-exe 'source ' . g:janus_vim_path . '/core/before/plugin/janus.vim'
-
-" You should note that groups will be processed by Pathogen in reverse
-" order they were added.
-call janus#add_group("tools")
-call janus#add_group("langs")
-call janus#add_group("colors")
-
-""
-"" Customisations
-""
-
-if filereadable(expand("~/.vimrc.before"))
-  source ~/.vimrc.before
-endif
-
 set nocompatible
 filetype off
 syntax enable
+" -------------------------------
+" PLUGIN MANAGEMENT
+" -------------------------------
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -42,28 +14,89 @@ Plugin 'posva/vim-vue'
 Plugin 'pangloss/vim-javascript'
 Plugin 'elzr/vim-json'
 Plugin 'groenewege/vim-less'
-Plugin 'bling/vim-airline'
 Plugin 'scrooloose/nerdtree'
 Plugin 'kien/ctrlp.vim'
 Plugin 'othree/html5.vim'
-
-
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'bling/vim-airline'
+Plugin 'joshdick/onedark.vim'
+Plugin 'tomasr/molokai'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'digitaltoad/vim-jade'
 
 call vundle#end()
 filetype plugin indent on
 
 au BufReadPost *.vue set syntax=vue
-set tabstop=2
-set shiftwidth=2
+au BufReadPost *.php set syntax=php
+au BufReadPost *.pug set syntax=pug
+au BufReadPost *.pug set textwidth=300
+au BufReadPost *.md  set textwidth=80
+
+
+" ------------------------------
+"  GENERAL CONFIGURATIO
+" -----------------------------
+
+" Set to auto read when a file is changed from the outside
+set autoread
+
+" Always show current position
+set ruler
+" Configure backspace so it acts as it should act
+set backspace=eol,start,indent
+set whichwrap+=<,>,h,l
+
+" When searching try to be smart about cases
+set smartcase
+
+" Highlight search results
+set hlsearch
+
+" Makes search act like search in modern browsers
+set incsearch
+
+" Show matching brackets
+set showmatch
+
+" Remove trailing white space
+autocmd BufWritePre * :%s/\s\+$//e
+
+" Ignore System & Compiled files
+set wildignore=*.o,*~,*.pyc
+if has("win16") || has("win32")
+  set wildignore+=.git\*,.hg\*,.svn\*
+else
+  set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
+endif
+
+" Disable Silly backup files
+set nobackup
+set nowb
+set noswapfile
+
+" -------------------------------
+"  TEXT CONFIGURATION
+" ------------------------------
 set expandtab
+set smarttab
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set autoindent
+set nowrap
+set textwidth=200
 set splitright
 set ai
-" Disable plugins prior to loading pathogen
+set si
+set number
+" ------------------------------
+" COLOR SCHEMES
+" -----------------------------
+set laststatus=2
+set background=dark
+set t_Co=256
+let g:molokai_original = 1
+colorscheme molokai
 
-""
-"" Pathogen setup
-""
-
-" Load all groups, custom dir, and janus core
-
-" .vimrc.after is loaded after the plugins have loaded
+let g:airline_theme = 'molokai'
