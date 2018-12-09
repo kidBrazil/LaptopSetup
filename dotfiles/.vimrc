@@ -22,12 +22,15 @@ Plugin 'bling/vim-airline'
 Plugin 'joshdick/onedark.vim'
 Plugin 'tomasr/molokai'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'digitaltoad/vim-jade'
 
 call vundle#end()
 filetype plugin indent on
 
 au BufReadPost *.vue set syntax=vue
-au BufReadPost *.php set filetype=html
+au BufReadPost *.php set syntax=php
+au BufReadPost *.pug set syntax=pug
+au BufReadPost *.pug set textwidth=300
 au BufReadPost *.md  set textwidth=80
 
 
