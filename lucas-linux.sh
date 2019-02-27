@@ -221,6 +221,8 @@ clear
 echo
 # Install Process manager htop
 sudo apt-get install htop
+sudo apt-get install curl
+sudo apt-get install npm
 
 # [[ NODE JS ]].
 if node -v
@@ -265,6 +267,99 @@ clear
 echo
 echo "${YELLOW} [ Fixing MOZJPEG ]${NC}"
 sudo apt-get install libtool automake autoconf nasm
+
+#[ Install CURA ]
+clear
+echo
+echo "${YELLOW} [ Install CURA ]${NC}"
+sudo add-apt-repository ppa:thopiekar/cura
+sudo apt-get install cura
+
+#[ Install Discord ]
+clear
+echo
+echo"${YELLOW} [ Install Discord ]${NC}"
+sudo snap install discord
+
+#[ Install Brave Browser ]
+clear
+echo
+echo"${YELLOW} [ Install Brave Browser Beta ]${NC}"
+curl -s https://brave-browser-apt-beta.s3.brave.com/brave-core-nightly.asc | sudo apt-key --keyring /etc/apt/trusted.gpg.d/brave-browser-beta.gpg add -
+source /etc/os-release
+echo "deb [arch=amd64] https://brave-browser-apt-beta.s3.brave.com/ $UBUNTU_CODENAME main" | sudo tee /etc/apt/sources.list.d/brave-browser-beta-${UBUNTU_CODENAME}.list
+sudo apt update
+sudo apt install brave-browser-beta
+
+#[ Install Steam ]
+clear
+echo
+echo"${YELLOW} [ Install Steam ]${NC}"
+sudo add-apt-repository multiverse
+sudo apt-get update
+sudo apt-get install steam
+
+#[ Install Torrents ]
+clear
+echo
+echo"${YELLOW} [ Install Steam ]${NC}"
+sudo apt-get install transmission
+
+#[ Install Spotify ]
+clear
+echo
+echo"${YELLOW} [ Install Spotify ]${NC}"
+snap install spotify
+
+#[ Install Atom ]
+clear
+echo
+echo"${YELLOW} [ Install Atom ]${NC}"
+wget -qO - https://packagecloud.io/AtomEditor/atom/gpgkey | sudo apt-key add -
+sudo sh -c 'echo "deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main" > /etc/apt/sources.list.d/atom.list'
+sudo apt-get update
+sudo apt-get install atom
+
+  #[ Install Docker ]
+clear
+echo
+echo "${YELLOW} [ Install Docker ]${NC}"
+sudo apt-get remove docker docker-engine docker.io containerd runc
+sudo apt-get update
+sudo apt-get install apt-transport-https ca-certificates gnupg-agent software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+
+sudo apt-get install docker-ce docker-ce-cli containerd.io
+sudo usermod -aG docker $(whoami)
+sudo curl -L "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+
+base=https://github.com/docker/machine/releases/download/v0.16.0 && curl -L $base/docker-machine-$(uname -s)-$(uname -m) >/tmp/docker-machine && sudo install /tmp/docker-machine /usr/local/bin/docker-machine
+
+
+  #[ Install Docker ]
+clear
+echo
+echo "${YELLOW} [ Install Docker ]${NC}"
+sudo apt-get remove docker docker-engine docker.io containerd runc
+sudo apt-get update
+sudo apt-get install apt-transport-https ca-certificates gnupg-agent software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+
+sudo apt-get install docker-ce docker-ce-cli containerd.io
+sudo usermod -aG docker $(whoami)
+sudo curl -L "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+
+base=https://github.com/docker/machine/releases/download/v0.16.0 && curl -L $base/docker-machine-$(uname -s)-$(uname -m) >/tmp/docker-machine && sudo install /tmp/docker-machine /usr/local/bin/docker-machine
 
 #[ Configuring VIM and ZSH ]
 clear
