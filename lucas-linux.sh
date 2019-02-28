@@ -371,11 +371,6 @@ sudo cp ./dotfiles/.vimrc ~/.vimrc
 clear
 echo "${YELLOW}"
 #Show ASCII Art if it's there.
-if [ -f ./kryptonite.txt ]
-then
-  cat ./kryptonite.txt
-fi
-echo
 sleep 2s
 echo "======================================================================================"
 echo
@@ -385,14 +380,28 @@ echo "List Of Installed Apps:"
 echo
 echo "- Git"
 echo "- Xclip"
+echo "- Zsh"
 echo "- Vim"
+echo "- Zsh Powerline Fonts"
 echo "- Vundle (With Plugins)"
-echo "- OhMyZSH"
 echo "- Tree"
 echo "- TaskWarrior"
 echo "- HTop"
 echo "- Guake"
+echo "- Curl"
+echo "- Docker"
+echo "- NPM"
+echo "- NVM"
+echo "- Node"
+echo "- Vue"
+echo "- Cura"
+echo "- Spotify"
+echo "- Transmission"
+echo "- Discord"
+echo "- Brave(Beta Stream)"
+echo "- Steam"
+echo "- Atom"
 echo
 echo "======================================================================================"
-sleep 5s
+sleep 10s
 exit 1
