@@ -282,6 +282,12 @@ echo
 echo"${YELLOW} [ Install Discord ]${NC}"
 sudo snap install discord
 
+#[ Install Postman ]
+clear
+echo
+echo"${YELLOW} [ Install Discord ]${NC}"
+sudo snap install postman
+
 #[ Install Brave Browser ]
 clear
 echo
