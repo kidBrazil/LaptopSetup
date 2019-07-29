@@ -279,19 +279,19 @@ sudo apt-get install cura
 #[ Install Discord ]
 clear
 echo
-echo"${YELLOW} [ Install Discord ]${NC}"
+echo "${YELLOW} [ Install Discord ]${NC}"
 sudo snap install discord
 
 #[ Install Postman ]
 clear
 echo
-echo"${YELLOW} [ Install Discord ]${NC}"
+echo "${YELLOW} [ Install Discord ]${NC}"
 sudo snap install postman
 
 #[ Install Brave Browser ]
 clear
 echo
-echo"${YELLOW} [ Install Brave Browser Beta ]${NC}"
+echo "${YELLOW} [ Install Brave Browser Beta ]${NC}"
 curl -s https://brave-browser-apt-beta.s3.brave.com/brave-core-nightly.asc | sudo apt-key --keyring /etc/apt/trusted.gpg.d/brave-browser-beta.gpg add -
 source /etc/os-release
 echo "deb [arch=amd64] https://brave-browser-apt-beta.s3.brave.com/ $UBUNTU_CODENAME main" | sudo tee /etc/apt/sources.list.d/brave-browser-beta-${UBUNTU_CODENAME}.list
@@ -301,7 +301,7 @@ sudo apt install brave-browser-beta
 #[ Install Steam ]
 clear
 echo
-echo"${YELLOW} [ Install Steam ]${NC}"
+echo "${YELLOW} [ Install Steam ]${NC}"
 sudo add-apt-repository multiverse
 sudo apt-get update
 sudo apt-get install steam
@@ -309,19 +309,19 @@ sudo apt-get install steam
 #[ Install Torrents ]
 clear
 echo
-echo"${YELLOW} [ Install Steam ]${NC}"
+echo "${YELLOW} [ Install Steam ]${NC}"
 sudo apt-get install transmission
 
 #[ Install Spotify ]
 clear
 echo
-echo"${YELLOW} [ Install Spotify ]${NC}"
+echo "${YELLOW} [ Install Spotify ]${NC}"
 snap install spotify
 
 #[ Install Atom ]
 clear
 echo
-echo"${YELLOW} [ Install Atom ]${NC}"
+echo "${YELLOW} [ Install Atom ]${NC}"
 wget -qO - https://packagecloud.io/AtomEditor/atom/gpgkey | sudo apt-key add -
 sudo sh -c 'echo "deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main" > /etc/apt/sources.list.d/atom.list'
 sudo apt-get update
@@ -351,6 +351,10 @@ base=https://github.com/docker/machine/releases/download/v0.16.0 && curl -L $bas
 clear
 echo
 echo "${YELLOW}[ CONFIGURING VIM & ZSH ] ${NC}"
+sudo apt install sed
+# Fix Files
+sed -i "s|user|$USER|g" dotfiles/.zshrc
+# Copy Files
 sudo cp ./dotfiles/.zshrc ~/.zshrc
 sudo cp ./dotfiles/.vimrc ~/.vimrc
 #[ENDING]
