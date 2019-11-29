@@ -539,9 +539,9 @@
       <Z>0</Z>
       <Command>0</Command>
       <Key>
-        <DisplayID>40</DisplayID>
-        <ValASCII>176</ValASCII>
-        <ValScan>40</ValScan>
+        <DisplayID>44</DisplayID>
+        <ValASCII>32</ValASCII>
+        <ValScan>44</ValScan>
         <KeyType>0</KeyType>
         <AllLayers>false</AllLayers>
         <HasASCII>true</HasASCII>
@@ -651,9 +651,9 @@
       <Z>1</Z>
       <Command>0</Command>
       <Key>
-        <DisplayID>41</DisplayID>
-        <ValASCII>177</ValASCII>
-        <ValScan>41</ValScan>
+        <DisplayID>30</DisplayID>
+        <ValASCII>49</ValASCII>
+        <ValScan>30</ValScan>
         <KeyType>0</KeyType>
         <AllLayers>false</AllLayers>
         <HasASCII>true</HasASCII>
@@ -763,10 +763,10 @@
       <Z>1</Z>
       <Command>0</Command>
       <Key>
-        <DisplayID>361</DisplayID>
-        <ValASCII>1</ValASCII>
-        <ValScan>1</ValScan>
-        <KeyType>4</KeyType>
+        <DisplayID>31</DisplayID>
+        <ValASCII>50</ValASCII>
+        <ValScan>31</ValScan>
+        <KeyType>0</KeyType>
         <AllLayers>false</AllLayers>
         <HasASCII>true</HasASCII>
       </Key>
@@ -875,10 +875,10 @@
       <Z>1</Z>
       <Command>0</Command>
       <Key>
-        <DisplayID>360</DisplayID>
-        <ValASCII>0</ValASCII>
-        <ValScan>0</ValScan>
-        <KeyType>4</KeyType>
+        <DisplayID>32</DisplayID>
+        <ValASCII>51</ValASCII>
+        <ValScan>32</ValScan>
+        <KeyType>0</KeyType>
         <AllLayers>false</AllLayers>
         <HasASCII>true</HasASCII>
       </Key>
@@ -987,10 +987,10 @@
       <Z>1</Z>
       <Command>0</Command>
       <Key>
-        <DisplayID>362</DisplayID>
-        <ValASCII>2</ValASCII>
-        <ValScan>2</ValScan>
-        <KeyType>4</KeyType>
+        <DisplayID>33</DisplayID>
+        <ValASCII>52</ValASCII>
+        <ValScan>33</ValScan>
+        <KeyType>0</KeyType>
         <AllLayers>false</AllLayers>
         <HasASCII>true</HasASCII>
       </Key>
@@ -1099,10 +1099,10 @@
       <Z>1</Z>
       <Command>0</Command>
       <Key>
-        <DisplayID>383</DisplayID>
-        <ValASCII>10</ValASCII>
-        <ValScan>10</ValScan>
-        <KeyType>10</KeyType>
+        <DisplayID>34</DisplayID>
+        <ValASCII>53</ValASCII>
+        <ValScan>34</ValScan>
+        <KeyType>0</KeyType>
         <AllLayers>false</AllLayers>
         <HasASCII>true</HasASCII>
       </Key>
@@ -1155,10 +1155,10 @@
       <Z>1</Z>
       <Command>0</Command>
       <Key>
-        <DisplayID>300</DisplayID>
-        <ValASCII>0</ValASCII>
-        <ValScan>0</ValScan>
-        <KeyType>255</KeyType>
+        <DisplayID>383</DisplayID>
+        <ValASCII>10</ValASCII>
+        <ValScan>10</ValScan>
+        <KeyType>10</KeyType>
         <AllLayers>false</AllLayers>
         <HasASCII>true</HasASCII>
       </Key>
@@ -1211,10 +1211,10 @@
       <Z>1</Z>
       <Command>0</Command>
       <Key>
-        <DisplayID>384</DisplayID>
-        <ValASCII>20</ValASCII>
-        <ValScan>20</ValScan>
-        <KeyType>10</KeyType>
+        <DisplayID>35</DisplayID>
+        <ValASCII>54</ValASCII>
+        <ValScan>35</ValScan>
+        <KeyType>0</KeyType>
         <AllLayers>false</AllLayers>
         <HasASCII>true</HasASCII>
       </Key>
@@ -1239,9 +1239,9 @@
       <Z>1</Z>
       <Command>0</Command>
       <Key>
-        <DisplayID>381</DisplayID>
-        <ValASCII>236</ValASCII>
-        <ValScan>236</ValScan>
+        <DisplayID>384</DisplayID>
+        <ValASCII>20</ValASCII>
+        <ValScan>20</ValScan>
         <KeyType>10</KeyType>
         <AllLayers>false</AllLayers>
         <HasASCII>true</HasASCII>
