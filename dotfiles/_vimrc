@@ -35,8 +35,6 @@ filetype off
 set rtp+=$VIM/vimfiles/bundle/Vundle.vim/
 call vundle#begin('$VIM/vimfiles/bundle')
 
-
-
 " Bundles
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'cakebaker/scss-syntax.vim'
@@ -57,7 +55,6 @@ Plugin 'digitaltoad/vim-jade'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
-
 
 " Settings
 syntax on
@@ -89,45 +86,17 @@ set background=dark
 set t_Co=256
 let g:molokai_original = 1
 colorscheme molokai
-
 let g:airline_theme = 'molokai'
+
 set backupdir=%HOMEPATH%/temp  " Do not clutter directory with swap
 set directory=%HOMEPATH%/temp  " and temp files
 let g:netrw_liststyle=3
-" set colorcolumn=80
 
-" ConEmu conflict with Vim check out
-" Github issue https://github.com/Maximus5/ConEmu/issues/641
-inoremap <Char-0x07F> <BS>
-nnoremap <Char-0x07F> <BS>
-
-" Airline-specific settings
-" set guifont=Powerline\ Consolas:h10:b
-" set guifont=Meslo\ LG\ M\ for\ Powerline:h9
-" set encoding=utf-8
-" let g:airline_powerline_fonts=1
-" let g:airline_theme = 'tomorrow-night'
-
-" Specify .md files as markdown
-au BufRead,BufNewFile *.md setlocal ft=markdown
-
-" Configure tabstop softtabstop and expand or not by filetype
-if has("autocmd")
-  filetype on
-
-  autocmd FileType vim setlocal ts=2 sts=2 sw=2 expandtab
-  autocmd FileType ruby setlocal ts=2 sts=2 sw=2 expandtab
-  autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
-  autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab
-  auto ms FileType css setlocal ts=2 sts=2 sw=2 expandtab
-
-  " These highlight lines that extend past 80 chars
-  autocmd BufEnter * highlight OverLength ctermbg=red ctermbg=white guibg=#592929
-  autocmd BufEnter * match OverLength /\%>80v.\+/
-
-  " Force Vim to read md files as markdown, not modula2
-  autocmd BufNewFile,BufReadPost *.md set filetype=markdown
-endif
+au BufReadPost *.vue set syntax=vue
+au BufReadPost *.php set syntax=php
+au BufReadPost *.pug set syntax=pug
+au BufReadPost *.pug set textwidth=300
+au BufReadPost *.md  set textwidth=80
 
 " Leader customization
 let mapleader=" "
