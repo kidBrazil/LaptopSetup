@@ -12,11 +12,17 @@ clear
 BLACKMESA="[ Singularity Manager ] ||"
 
 # Error Handling Function
-error_handle() {
-echo
-echo "${RED}[ ERROR ] || ${BLACKMESA}: $1${NC}"
-echo
-exit 1
+error_render() {
+  echo
+  echo "${RED}[ ERROR ] || ${BLACKMESA}: $1${NC}"
+  echo
+  exit 1
+}
+# Render Titles
+title_render() {
+  clear
+
+
 }
 
 # Color Variables
@@ -41,13 +47,8 @@ echo "${NC}${RED}"
 echo "Are You Ready For The [ SINGULARITY? ]"
 echo "${NC}${YELLOW}"
 echo "--------------------------------------------------------------------------------------"
-read -p "${NC}${GREEN} [ YES JOIN THE SINGULARITY | YES JOIN THE SINGULARITY ]" answer
+read -p "${NC}${GREEN} [ YES JOIN THE SINGULARITY | NO REMAIN MORTAL ]" answer
 clear
-echo "[ GENERATING BIO IMPLANTS... ]"
-sleep 1s
-echo "[ PROCURING NETWORK CONNECTIONS... ]"
-sleep 1s
-echo "[ INITIATING SINGULARITY...]"
 sleep 2s
 clear
 
@@ -59,7 +60,7 @@ then
   clear
   echo "${GREEN}[ DATA REPOSITORY SUCCESSFULLY UPDATED ]${NC}"
 else
-  error_handle "SUDO Failed to update Apt-Get...you are not ready for the singularity."
+  error_render "SUDO Failed to update Apt-Get...you are not ready for the singularity."
 fi
 # [ Check for GIT installation & Configuration ]
 if git --version
@@ -104,20 +105,30 @@ echo "${YELLOW}[ Installing XClip.... ]${NC}"
 sleep 1s
 # Install XClip
 sudo apt-get install xclip
-# Copy RSA to Clipboard
-echo
-echo "${GREEN}Copying RSA Key To Clipboard...${NC}"
-sleep 2s
-xclip -sel clip < ~/.ssh/id_rsa.pub
-cat ~/.ssh/id_rsa.pub
-echo
-echo "${YELLO}Your Public SSH Key is Now Loaded In Your ${GREEN}CLIPBOARD (ctrl/cmd+v)${NC}"
-echo
-echo "${YELLOW} Please visit https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/"
-echo "For instructions on how to add it to your GitHub Account."
-sleep 2s
-echo
-read -p "${GREEN}Ready To Proceed?${NC}"
+clear
+echo "${YELLOW}[ Generating SSH Key.... ]${NC}"
+# Generate SSH Key
+ssh-keygen -t rsa -b 4096 -C $useremail
+if eval "$(ssh-agent -s)"
+  ssh-add ~/.ssh/id_rsa
+  # Copy RSA to Clipboard
+  echo
+  echo "${GREEN}Copying RSA Key To Clipboard...${NC}"
+  sleep 2s
+  xclip -sel clip < ~/.ssh/id_rsa.pub
+  cat ~/.ssh/id_rsa.pub
+  echo
+  echo "${YELLO}Your Public SSH Key is Now Loaded In Your ${GREEN}CLIPBOARD (ctrl/cmd+v)${NC}"
+  echo
+  echo "${YELLOW} Please visit https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/"
+  echo "For instructions on how to add it to your GitHub Account."
+  sleep 2s
+  echo
+  read -p "${GREEN}Hit any key To Proceed?${NC}"
+else
+  error_render "SSH Keyagent not available"
+fi
+
 
 #[ Install OHMYZDSH ]
 clear
@@ -128,8 +139,6 @@ sudo apt-get install git-core
 sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 clear
 echo
-echo "${YELLOW}[ SETTING ZSH AS DEFAULT ]${NC}"
-chsh -s `which zsh`
 echo
 echo "${GREEN}[ Successfully Installed ZSH and set as default ]"
 echo
@@ -348,6 +357,7 @@ sudo chmod +x /usr/local/bin/docker-compose
 base=https://github.com/docker/machine/releases/download/v0.16.0 && curl -L $base/docker-machine-$(uname -s)-$(uname -m) >/tmp/docker-machine && sudo install /tmp/docker-machine /usr/local/bin/docker-machine
 
 #[ Configuring VIM and ZSH ]
+
 clear
 echo
 echo "${YELLOW}[ CONFIGURING VIM & ZSH ] ${NC}"
@@ -357,6 +367,9 @@ sed -i "s|user|$USER|g" dotfiles/.zshrc
 # Copy Files
 sudo cp ./dotfiles/.zshrc ~/.zshrc
 sudo cp ./dotfiles/.vimrc ~/.vimrc
+#[ Set ZSH as DEFAULT
+echo "${YELLOW}[ SETTING ZSH AS DEFAULT ]${NC}"
+chsh -s `which zsh`
 #[ENDING]
 clear
 echo "${YELLOW}"
