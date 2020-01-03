@@ -22,7 +22,7 @@ error_render() {
 title_render() {
   clear
   echo
-  echo "${YELLOW}[ INSTALL PACKAGE ] || $1 ?${NC}"
+  echo "${YELLOW}[ INSTALLING PACKAGE ] || ${GREEN}$1${NC}"
   echo
   sleep 2s
 }
@@ -30,7 +30,7 @@ title_render() {
 installed_render() {
   clear
   echo
-  echo "${GREEN}[ $1 IS ALREADY INSTALLED || MOVING TO NEXT PACKAGE ]${NC}"
+  echo "${GREEN}[${YELLOW} $1 ${GREEN}WAS SUCCESSFULLY INSTALLED || MOVING TO NEXT PACKAGE ]${NC}"
   echo
   sleep 2s
 }
@@ -38,7 +38,7 @@ installed_render() {
 cfged_render() {
   clear
   echo
-  echo "${GREEN}[ $1 IS ALREADY CONFIGURED ]${NC}"
+  echo "${GREEN}[${YELLOW} $1 ${GREEN} IS ALREADY CONFIGURED ]${NC}"
   echo
   sleep 2s
 }
@@ -46,7 +46,7 @@ cfged_render() {
 cfg_render() {
   clear
   echo
-  echo "${YELLOW}[ CONFIGURING ] || $1 ${NC}"
+  echo "${YELLOW}[ CONFIGURING ] || $1 ${GREEN}${NC}"
   echo
   sleep 2s
 }
@@ -60,7 +60,7 @@ NC=`tput sgr0`
 
 # [ Output Art & Introduction ] ------------------------------------
 clear
-echo "${YELLOW}"
+echo "${ORANGE}"
 #Show ASCII Art if it's there.
 if [ -f ./kryptonite.txt ]
 then
@@ -71,7 +71,7 @@ sleep 2s
 echo "======================================================================================"
 echo "${NC}${RED}"
 echo "Are You Ready For The [ SINGULARITY? ]"
-echo "${NC}${YELLOW}"
+echo "${NC}${ORANGE}"
 echo "--------------------------------------------------------------------------------------"
 read -p "${NC}${GREEN} [ YES JOIN THE SINGULARITY | NO REMAIN MORTAL ]" answer
 clear
@@ -156,7 +156,7 @@ installed_render "OhM ZDSH"
 sleep 1s
 echo "For this to fully take effect you will have to ${RED}REBOOT.${GREEN}"
 echo "Don't worry - The script will reboot at the end of the installation."
-sleep 3s
+sleep 2s
 read -p "${YELLOW}Ready To Continue with Configuring ZDSH?${NC}"
 clear
 
@@ -167,7 +167,7 @@ installed_render "VIM"
 title_render "Vundle Plugins"
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 installed_render "Vundle Plugins"
-sleep 3s
+sleep 2s
 #[ Install Droid Sans Powerline Font ]
 clear
 echo
@@ -181,25 +181,25 @@ sudo rm -r zsh-my-powerline-fonts
 installed_render "Powerline Fonts"
 echo
 echo "${YELLOW}You can change the fonts in your terminal preference to enable them${NC}"
-sleep 3s
+sleep 2s
 
 #[ Install TaskWarrior ] ------------------------------------------------------//
 title_render "Taskwarrior"
 sudo apt-get install task
 installed_render "Taskwarrior"
-sleep 3s
+sleep 2s
 
 #[ Install TREE ] -------------------------------------------------------------//
 title_render "Tree Folder Viewer"
 sudo apt-get install tree
 installed_render "Tree Folder Viewer"
-sleep 3s
+sleep 2s
 
 #[ Install Guake ] ------------------------------------------------------------//
 title_render "GUAKE"
 sudo apt-get install guake
 installed_render "GUAKE"
-sleep 3s
+sleep 2s
 
 #[ Install Mooltipass ] -------------------------------------------------------//
 title_render "MOOLTIPASS"
@@ -207,7 +207,7 @@ sudo add-apt-repository ppa:mooltipass/moolticute
 sudo apt-get update
 sudo apt-get install moolticute
 installed_render "MOOLTIPASS"
-sleep 3s
+sleep 2s
 
 #[ Install Libraries ] --------------------------------------------------------//
 # Install Build Essentials and Libssl
@@ -228,34 +228,34 @@ clear
 #[ Install Libtool, automake, nams and autoconf ]
 sudo apt-get install libtool automake autoconf nasm
 installed_render "DEV LIBRARIES"
-sleep 3s
+sleep 2s
 
 #[ HTOP / CURL / NPM] ---------------------------------------------------------//
 title_render "HTOP Process Manager"
 sudo apt-get install htop
 installed_render "HTOP Process Manager"
-sleep 3s
+sleep 2s
 
 title_render "CURL DOWNLOADER"
 sudo apt-get install curl
 installed_render "CURL DOWNLOADER"
-sleep 3s
+sleep 2s
 
 title_render "NODE PACKAGE MANAGER"
 sudo apt-get install npm
 installed_render "NODE PACKAGE MANAGER"
-sleep 3s
+sleep 2s
 
 title_render "WALLCH CHANGER"
 sudo apt-get install wallch
 installed_render "WALLCH CHANGER"
-sleep 3s
+sleep 2s
 
 #[ NODE ] ---------------------------------------------------------------------//
 if node -v
   then
     installed_render "NODE JS"
-    sleep 3s
+    sleep 2s
   else
     title_render "NODE JS"
     sudo apt-get update
@@ -263,50 +263,53 @@ if node -v
     nvm install node --lts
     nvm use --lts
     installed_render "NODE JS"
-    sleep 3s
+    sleep 2s
 fi
 
 #[ Install VUE Globally ] -----------------------------------------------------//
 title_render "VUE JS"
 npm install -g vue
-npm install -g vue-cli
+npm install -g @vue/cli
 installed_render "VUE JS"
-sleep 3s
+sleep 2s
 
 #[ Install CURA ] -------------------------------------------------------------//
 title_render "CURA SLICER"
 sudo add-apt-repository ppa:thopiekar/cura
 sudo apt-get install cura
 installed_render "CURA SLICER"
-sleep 3s
+sleep 2s
 
 #[ Install Discord ] ----------------------------------------------------------//
 title_render "DISCORD"
 sudo snap install discord
 installed_render "DISCORD"
-sleep 3s
+sleep 2s
 
 #[ Install Slack ] ------------------------------------------------------------//
 title_render "SLACK"
 sudo apt-get install slack
 installed_render "SLACK"
-sleep 3s
+sleep 2s
 
 #[ Install Postman ] ----------------------------------------------------------//
 title_render "POSTMAN"
 sudo snap install postman
 installed_render "POSTMAN"
-sleep 3s
+sleep 2s
 
 #[ Install Brave Browser ] ----------------------------------------------------//
-title_render "BRAVE BETA"
-curl -s https://brave-browser-apt-beta.s3.brave.com/brave-core-nightly.asc | sudo apt-key --keyring /etc/apt/trusted.gpg.d/brave-browser-beta.gpg add -
-source /etc/os-release
-echo "deb [arch=amd64] https://brave-browser-apt-beta.s3.brave.com/ $UBUNTU_CODENAME main" | sudo tee /etc/apt/sources.list.d/brave-browser-beta-${UBUNTU_CODENAME}.list
-sudo apt update
-sudo apt install brave-browser-beta
-installed_render "BRAVE BETA"
-sleep 3s
+title_render "BRAVE"
+sudo snap install brave
+installed_render "BRAVE"
+sleep 2s
+
+#[ Install KiCad ] ----------------------------------------------------//
+title_render "KiCad"
+sudo apt-get install kicad
+installed_render "KiCad"
+sleep 2s
+
 
 #[ Install Steam ] ------------------------------------------------------------//
 title_render "STEAM GAMES"
@@ -314,19 +317,19 @@ sudo add-apt-repository multiverse
 sudo apt-get update
 sudo apt-get install steam
 installed_render "STEAM GAMES"
-sleep 3s
+sleep 2s
 
 #[ Install Torrents ] ---------------------------------------------------------//
 title_render "TRANSMISSION TORRENTS"
 sudo apt-get install transmission
 installed_render "TRANSMISSION TORRENTS"
-sleep 3s
+sleep 2s
 
 #[ Install Spotify ] ----------------------------------------------------------//
 title_render "SPOTIFY"
 snap install spotify
 installed_render "SPOTIFY"
-sleep 3s
+sleep 2s
 
 #[ Install Atom ] -------------------------------------------------------------//
 title_render "ATOM EDITOR"
@@ -335,7 +338,7 @@ sudo sh -c 'echo "deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ 
 sudo apt-get update
 sudo apt-get install atom
 installed_render "ATOM EDITOR"
-sleep 3s
+sleep 2s
 
 #[ Install Docker ] -----------------------------------------------------------//
 title_render "DOCKER"
@@ -355,7 +358,7 @@ sudo chmod +x /usr/local/bin/docker-compose
 
 base=https://github.com/docker/machine/releases/download/v0.16.0 && curl -L $base/docker-machine-$(uname -s)-$(uname -m) >/tmp/docker-machine && sudo install /tmp/docker-machine /usr/local/bin/docker-machine
 installed_render "DOCKER"
-sleep 3s
+sleep 2s
 
 #[ Install NVIDIA Drivers ] ---------------------------------------------------//
 title_render "NVIDIA Drivers"
@@ -364,7 +367,7 @@ sudo add-apt-repository ppa:graphics-drivers
 sudo apt-get update
 sudo apt-get install nvidia-375
 installed_render "NVIDIA Drivers"
-sleep 3s
+sleep 2s
 
 #[ Configuring VIM and ZSH ] --------------------------------------------------//
 clear
@@ -378,7 +381,7 @@ sed -i "s|user|$USER|g" dotfiles/.zshrc
 sudo cp ./dotfiles/.zshrc ~/.zshrc
 sudo cp ./dotfiles/.vimrc ~/.vimrc
 cfged_render "VIM and ZSH"
-sleep 3s
+sleep 2s
 
 #[ENDING]
 clear
@@ -421,5 +424,4 @@ sleep 10s
 read -p "${YELLOW}Ready To Reboot?${NC}"
 #[ Set ZSH as DEFAULT ] -------------------------------------------------------//
 echo "${YELLOW}[ SETTING ZSH AS DEFAULT ]${NC}"
-chsh -s `which zsh`
-exit 1 && sudo systemctl reboot -i
+chsh -s `which zsh` && sudo systemctl reboot -i
